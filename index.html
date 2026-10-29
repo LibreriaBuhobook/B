@@ -3,445 +3,406 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>BuhoBooks | Bio</title>
+  <title>BuhoBooks | Librería</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    /* ── Reset & Base ── */
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
     :root {
       --bg-cream: #FDF5E6;
       --bg-card: #FFFFFF;
-      --bg-card-hover: #FFF8EE;
+      --bg-card-soft: #FFF9F3;
       --orange: #E8491D;
-      --orange-light: rgba(232, 73, 29, 0.1);
-      --orange-glow: rgba(232, 73, 29, 0.2);
+      --orange-dark: #C93711;
+      --orange-light: rgba(232, 73, 29, 0.12);
+      --orange-glow: rgba(232, 73, 29, 0.22);
       --text-dark: #2D2014;
-      --text-secondary: #7A6B5D;
-      --border: rgba(232, 73, 29, 0.2);
-      --radius: 16px;
-
-      /* Colores de cada red social */
+      --text-mid: #685B50;
+      --text-soft: #7D6E60;
+      --border: rgba(232, 73, 29, 0.18);
+      --shadow: 0 16px 34px rgba(77, 43, 22, 0.12);
       --whatsapp: #25D366;
       --instagram: #E4405F;
       --facebook: #1877F2;
       --tiktok: #000000;
     }
 
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
+      margin: 0;
+      min-height: 100vh;
       font-family: 'Nunito', sans-serif;
-      background-color: var(--bg-cream);
+      background: var(--bg-cream);
       background-image: url('BuhoBooks/Fondo.svg');
-      background-size: 400px;
+      background-size: 420px;
       background-repeat: repeat;
       color: var(--text-dark);
-      min-height: 100vh;
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      padding: 40px 20px 60px;
-      overflow-x: hidden;
+      padding: 32px 18px 54px;
     }
 
-    /* ── Overlay para legibilidad ── */
     body::before {
       content: '';
       position: fixed;
       inset: 0;
-      background: rgba(253, 245, 230, 0.75);
+      background: rgba(253, 245, 230, 0.72);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* ── Contenedor principal ── */
-    .container {
+    .page {
       position: relative;
       z-index: 1;
-      max-width: 420px;
-      width: 100%;
+      width: min(100%, 460px);
       display: flex;
       flex-direction: column;
-      align-items: center;
       gap: 20px;
     }
 
-    /* ── Avatar ── */
-    .avatar-wrapper {
+    .card {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(2px);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 26px 22px 22px;
+      text-align: center;
+    }
+
+    .avatar-wrap {
+      width: 134px;
+      height: 134px;
+      margin: 0 auto 16px;
       position: relative;
-      width: 130px;
-      height: 130px;
+      display: grid;
+      place-items: center;
     }
 
     .avatar-ring {
       position: absolute;
-      inset: -5px;
+      inset: -6px;
       border-radius: 50%;
-      border: 4px solid var(--orange);
-      animation: pulse-ring 3s ease-in-out infinite;
+      border: 3px solid var(--orange);
+      animation: pulse 3s ease-in-out infinite;
     }
 
-    @keyframes pulse-ring {
+    @keyframes pulse {
       0%, 100% { transform: scale(1); opacity: 1; }
-      50% { transform: scale(1.05); opacity: 0.7; }
+      50% { transform: scale(1.08); opacity: 0.72; }
     }
 
     .avatar {
-      position: relative;
-      width: 130px;
-      height: 130px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       overflow: hidden;
-      border: 4px solid var(--bg-cream);
-      box-shadow: 0 4px 20px var(--orange-glow);
+      border: 4px solid rgba(255,255,255,0.85);
+      background: #fff;
+      box-shadow: 0 10px 25px rgba(232,73,29,0.18);
     }
 
     .avatar img {
       width: 100%;
       height: 100%;
+      display: block;
       object-fit: cover;
     }
 
-    /* ── Texto del perfil ── */
-    .profile-info {
-      text-align: center;
-      width: 100%;
-    }
-
-    .profile-name {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 2rem;
-      font-weight: 700;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--orange-light);
       color: var(--orange);
-      letter-spacing: 0.5px;
-    }
-
-    .profile-handle {
-      font-size: 0.9rem;
-      color: var(--text-secondary);
-      margin-top: 2px;
-      font-weight: 500;
-    }
-
-    .profile-bio {
-      font-size: 0.95rem;
-      color: var(--text-secondary);
-      line-height: 1.6;
-      margin-top: 10px;
-      max-width: 340px;
-      font-weight: 500;
-      margin-inline: auto;
-    }
-
-    /* ── Estadísticas ── */
-    .stats {
-      display: flex;
-      gap: 14px;
-      width: 100%;
-    }
-
-    .stat-card {
-      flex: 1;
-      background: var(--bg-card);
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px 12px;
-      text-align: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .stat-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(232, 73, 29, 0.12);
-    }
-
-    .stat-number {
-      font-family: 'Fredoka', sans-serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: var(--orange);
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
-      margin-top: 4px;
-      font-weight: 600;
-    }
-
-    .stat-icon {
-      font-size: 1.3rem;
-      margin-bottom: 4px;
-    }
-
-    /* ── Marquesina "Síguenos" ── */
-    .marquee-wrapper {
-      width: 100%;
-      overflow: hidden;
-      background: var(--orange);
-      border-radius: 30px;
-      padding: 10px 0;
-    }
-
-    .marquee-content {
-      display: flex;
-      animation: marquee-scroll 12s linear infinite;
-      white-space: nowrap;
-      width: max-content;
-      will-change: transform;
-    }
-
-    .marquee-content span {
-      flex: 0 0 auto;
-      font-family: 'Fredoka', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #FFFFFF;
-      letter-spacing: 1px;
-      padding: 0 20px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      margin-bottom: 12px;
     }
 
-    @keyframes marquee-scroll {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
+    h1 {
+      margin: 0;
+      font-family: 'Fredoka', sans-serif;
+      font-size: clamp(2.1rem, 5vw, 2.8rem);
+      line-height: 1;
+      color: var(--orange);
     }
 
-    /* ── Enlaces de redes sociales ── */
-    .links {
-      width: 100%;
+    .subtitle {
+      margin: 10px 0 0;
+      color: var(--text-mid);
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .description {
+      margin: 12px auto 0;
+      max-width: 320px;
+      color: var(--text-soft);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 18px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 800;
+      border: 2px solid transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.primary {
+      background: var(--orange);
+      color: #fff;
+      box-shadow: 0 12px 22px rgba(232,73,29,0.22);
+    }
+
+    .btn.primary:hover {
+      background: var(--orange-dark);
+    }
+
+    .btn.secondary {
+      background: #fff;
+      color: var(--orange);
+      border-color: rgba(232,73,29,0.28);
+    }
+
+    .benefits {
+      padding: 18px 18px 12px;
+    }
+
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .benefit {
+      background: var(--bg-card-soft);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 16px 10px 14px;
+      text-align: center;
+      min-height: 118px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .benefit .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: rgba(232,73,29,0.08);
+      font-size: 1.5rem;
+    }
+
+    .benefit strong {
+      display: block;
+      font-size: 0.8rem;
+      line-height: 1.35;
+      color: var(--text-dark);
+    }
+
+    .links-box {
+      padding: 18px 18px 20px;
+    }
+
+    .section-title {
+      margin: 0 0 14px;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.3rem;
+      color: var(--orange);
+      text-align: center;
+    }
+
+    .social-list {
       display: flex;
       flex-direction: column;
       gap: 12px;
     }
 
-    .link-card {
+    .social-link {
       display: flex;
       align-items: center;
       gap: 14px;
-      padding: 16px 20px;
-      background: var(--bg-card);
-      border: 2px solid var(--border);
-      border-radius: var(--radius);
       text-decoration: none;
       color: var(--text-dark);
-      transition: all 0.3s ease;
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 12px 14px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
-    .link-card:hover {
-      background: var(--bg-card-hover);
-      transform: translateY(-3px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    .social-link:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 22px rgba(41, 24, 13, 0.08);
     }
 
-    /* Colores individuales en hover */
-    .link-card.whatsapp:hover { border-color: var(--whatsapp); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.2); }
-    .link-card.instagram:hover { border-color: var(--instagram); box-shadow: 0 8px 25px rgba(228, 64, 95, 0.2); }
-    .link-card.facebook:hover { border-color: var(--facebook); box-shadow: 0 8px 25px rgba(24, 119, 242, 0.2); }
-    .link-card.tiktok:hover { border-color: var(--tiktok); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
-    .link-card.catalogo:hover { border-color: var(--orange); box-shadow: 0 8px 25px rgba(232, 73, 29, 0.2); }
+    .social-link.whatsapp:hover { border-color: rgba(37,211,102,0.5); }
+    .social-link.instagram:hover { border-color: rgba(228,64,95,0.5); }
+    .social-link.facebook:hover { border-color: rgba(24,119,242,0.5); }
+    .social-link.tiktok:hover { border-color: rgba(0,0,0,0.45); }
 
-    .link-icon {
-      width: 44px;
-      height: 44px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .social-icon {
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
       flex-shrink: 0;
-      overflow: hidden;
     }
 
-    .link-card.whatsapp .link-icon { background: rgba(37, 211, 102, 0.12); }
-    .link-card.instagram .link-icon { background: rgba(228, 64, 95, 0.12); }
-    .link-card.facebook .link-icon { background: rgba(24, 119, 242, 0.12); }
-    .link-card.tiktok .link-icon { background: rgba(0, 0, 0, 0.08); }
-    .link-card.catalogo .link-icon { background: var(--orange-light); }
+    .social-link.whatsapp .social-icon { background: rgba(37,211,102,0.12); }
+    .social-link.instagram .social-icon { background: rgba(228,64,95,0.12); }
+    .social-link.facebook .social-icon { background: rgba(24,119,242,0.12); }
+    .social-link.tiktok .social-icon { background: rgba(0,0,0,0.08); }
 
-    .link-icon img {
+    .social-icon img {
       width: 28px;
       height: 28px;
       object-fit: contain;
     }
 
-    .link-text {
+    .social-meta {
       flex: 1;
       min-width: 0;
     }
 
-    .link-title {
+    .social-title {
       font-size: 1rem;
-      font-weight: 600;
+      font-weight: 800;
+      color: var(--text-dark);
     }
 
-    .link-subtitle {
-      font-size: 0.78rem;
-      color: var(--text-secondary);
+    .social-subtitle {
+      font-size: 0.76rem;
+      color: var(--text-soft);
       margin-top: 2px;
       overflow-wrap: anywhere;
     }
 
-    .link-arrow {
-      color: var(--text-secondary);
-      font-weight: 600;
-      font-size: 1.1rem;
-      transition: color 0.3s, transform 0.3s;
-    }
-
-    .link-card.whatsapp:hover .link-arrow { color: var(--whatsapp); transform: translateX(4px); }
-    .link-card.instagram:hover .link-arrow { color: var(--instagram); transform: translateX(4px); }
-    .link-card.facebook:hover .link-arrow { color: var(--facebook); transform: translateX(4px); }
-    .link-card.tiktok:hover .link-arrow { color: var(--tiktok); transform: translateX(4px); }
-    .link-card.catalogo:hover .link-arrow { color: var(--orange); transform: translateX(4px); }
-
-    /* ── Botón Compartir ── */
-    .share-btn {
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 16px 20px;
-      background: var(--orange);
-      border: none;
-      border-radius: 30px;
-      color: #FFFFFF;
-      font-family: 'Nunito', sans-serif;
-      font-size: 1rem;
+    .arrow {
+      font-size: 1.3rem;
+      color: var(--text-soft);
       font-weight: 700;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(232, 73, 29, 0.3);
-      letter-spacing: 0.5px;
     }
 
-    .share-btn:hover {
-      background: #d13d12;
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(232, 73, 29, 0.4);
-    }
-
-    .share-btn:active {
-      transform: translateY(0);
-    }
-
-    .share-btn svg {
-      width: 20px;
-      height: 20px;
-      fill: #FFFFFF;
-    }
-
-    /* ── Iconos de redes en footer ── */
-    .social-icons {
+    .footer-tools {
       display: flex;
-      gap: 16px;
-      align-items: center;
       justify-content: center;
-      margin-top: 4px;
+      gap: 14px;
+      flex-wrap: wrap;
+      padding-top: 4px;
     }
 
-    .social-icon-link {
-      width: 40px;
-      height: 40px;
+    .mini-link {
+      width: 46px;
+      height: 46px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-card);
-      border: 2px solid var(--border);
-      transition: all 0.3s ease;
-      overflow: hidden;
+      display: grid;
+      place-items: center;
+      background: rgba(255,255,255,0.8);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 18px rgba(68,41,27,0.06);
+      transition: transform 0.2s ease;
     }
 
-    .social-icon-link:hover {
-      transform: translateY(-3px) scale(1.08);
-      box-shadow: 0 6px 18px rgba(232, 73, 29, 0.2);
-      border-color: var(--orange);
-    }
+    .mini-link:hover { transform: translateY(-2px); }
 
-    .social-icon-link img {
+    .mini-link img {
       width: 22px;
       height: 22px;
       object-fit: contain;
     }
 
-    /* ── Footer ── */
     .footer {
-      margin-top: 4px;
+      text-align: center;
+      color: var(--text-soft);
       font-size: 0.8rem;
-      color: var(--text-secondary);
-      font-weight: 500;
-    }
-
-    .footer span {
-      color: var(--orange);
       font-weight: 700;
+      padding-bottom: 4px;
     }
 
-    /* ── Animación de entrada ── */
-    .container > * {
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 0.6s ease forwards;
+    .footer span { color: var(--orange); }
+
+    .share-btn {
+      width: 100%;
+      margin-top: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      border: none;
+      border-radius: 999px;
+      background: var(--orange);
+      color: #fff;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 12px 22px rgba(232,73,29,0.25);
+      transition: transform 0.2s ease, background 0.2s ease;
     }
 
-    .container > *:nth-child(1) { animation-delay: 0.1s; }
-    .container > *:nth-child(2) { animation-delay: 0.2s; }
-    .container > *:nth-child(3) { animation-delay: 0.3s; }
-    .container > *:nth-child(4) { animation-delay: 0.4s; }
-    .container > *:nth-child(5) { animation-delay: 0.5s; }
-    .container > *:nth-child(6) { animation-delay: 0.6s; }
-    .container > *:nth-child(7) { animation-delay: 0.7s; }
-    .container > *:nth-child(8) { animation-delay: 0.8s; }
-    .container > *:nth-child(9) { animation-delay: 0.9s; }
-
-    @keyframes fadeUp {
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    .share-btn:hover {
+      background: var(--orange-dark);
+      transform: translateY(-2px);
     }
 
-    /* ── Responsive ── */
-    @media (max-width: 480px) {
-      body { padding: 24px 16px 40px; }
-      .profile-name { font-size: 1.7rem; }
-      .avatar-wrapper { width: 110px; height: 110px; }
-      .avatar { width: 110px; height: 110px; }
-      .stat-number { font-size: 1.4rem; }
+    .share-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #fff;
     }
 
-    @media (max-width: 360px) {
-      body { padding: 20px 12px 32px; }
-      .container { gap: 16px; }
-      .stats { gap: 8px; }
-      .stat-card { padding: 12px 8px; }
-      .stat-label { font-size: 0.72rem; }
-      .link-card { gap: 10px; padding: 14px 12px; }
-    }
-
-    /* ── Toast de copiado ── */
     .toast {
       position: fixed;
-      bottom: 30px;
       left: 50%;
-      transform: translateX(-50%) translateY(80px);
+      bottom: 28px;
+      transform: translateX(-50%) translateY(90px);
       background: var(--text-dark);
       color: #fff;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-family: 'Nunito', sans-serif;
+      padding: 12px 20px;
+      border-radius: 999px;
       font-size: 0.9rem;
-      font-weight: 600;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
-      z-index: 1000;
+      font-weight: 700;
       opacity: 0;
-      transition: all 0.4s ease;
+      transition: all 0.3s ease;
+      z-index: 10;
       pointer-events: none;
     }
 
@@ -449,173 +410,151 @@
       opacity: 1;
       transform: translateX(-50%) translateY(0);
     }
+
+    @media (max-width: 420px) {
+      body { padding-left: 12px; padding-right: 12px; }
+      .hero { padding-left: 16px; padding-right: 16px; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-
-    <!-- Avatar con foto de perfil (SVG) -->
-    <div class="avatar-wrapper">
-      <div class="avatar-ring"></div>
-      <div class="avatar">
-        <img src="BuhoBooks/Perfil.svg" alt="BuhoBooks - Logo">
+  <div class="page">
+    <section class="card hero">
+      <div class="avatar-wrap">
+        <div class="avatar-ring"></div>
+        <div class="avatar">
+          <img src="BuhoBooks/Perfil.svg" alt="BuhoBooks logo">
+        </div>
       </div>
-    </div>
 
-    <!-- Info del perfil -->
-    <div class="profile-info">
-      <h1 class="profile-name">BuhoBooks</h1>
-      <p class="profile-handle">@libreria_buhobooks</p>
-      <p class="profile-bio">
-        📚 Tu librería de confianza · 🇨🇴 Envíos a todo Colombia 🦉✨
-      </p>
-    </div>
+      <div class="eyebrow">🦉 Librería colombiana</div>
+      <h1>BuhoBooks</h1>
+      <p class="subtitle">Tu librería de confianza en Colombia</p>
+      <p class="description">Encuentra tus próximos libros favoritos, regalos y novedades con atención rápida y entrega a todo el país.</p>
 
-    <!-- Estadísticas -->
-    <div class="stats">
-      <div class="stat-card">
-        <div class="stat-icon">📦</div>
-        <div class="stat-number">145+</div>
-        <div class="stat-label">Ventas confirmadas</div>
+      <div class="actions">
+        <a class="btn primary" href="https://wa.me/573000449696" target="_blank" rel="noreferrer">Pedir por WhatsApp</a>
+        <a class="btn secondary" href="https://wa.me/c/573000449696" target="_blank" rel="noreferrer">Ver catálogo</a>
       </div>
-      <div class="stat-card">
-        <div class="stat-icon">⭐</div>
-        <div class="stat-number">98%</div>
-        <div class="stat-label">Buena vibra</div>
-      </div>
-    </div>
+    </section>
 
-    <!-- Marquesina "Síguenos" -->
-    <div class="marquee-wrapper">
-      <div class="marquee-content">
-        <span>🦉 ¡Síguenos! · 📚 Nuevos libros cada semana · 🇨🇴 Envíos a todo Colombia · 📖 Tu próxima lectura te espera ·</span>
-        <span>🦉 ¡Síguenos! · 📚 Nuevos libros cada semana · 🇨🇴 Envíos a todo Colombia · 📖 Tu próxima lectura te espera ·</span>
-      </div>
-    </div>
+    <section class="card benefits">
+      <div class="benefits-grid">
+        <div class="benefit">
+          <div class="icon">📦</div>
+          <strong>Envíos a todo Colombia</strong>
+        </div>
 
-    <!-- Links de redes sociales -->
-    <div class="links">
-      <!-- WhatsApp -->
-      <a href="https://wa.me/573000449696" class="link-card whatsapp" target="_blank">
-        <div class="link-icon">
+        <div class="benefit">
+          <div class="icon">📚</div>
+          <strong>Libros para todos los gustos</strong>
+        </div>
+
+        <div class="benefit">
+          <div class="icon">🦉</div>
+          <strong>Atención cercana y confiable</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="card links-box">
+      <h2 class="section-title">Síguenos</h2>
+
+      <div class="social-list">
+        <a class="social-link whatsapp" href="https://wa.me/573000449696" target="_blank" rel="noreferrer">
+          <div class="social-icon">
+            <img src="BuhoBooks/whatsapp-icon.svg" alt="WhatsApp">
+          </div>
+          <div class="social-meta">
+            <div class="social-title">WhatsApp</div>
+            <div class="social-subtitle">Haz tu pedido por mensaje</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="social-link instagram" href="https://www.instagram.com/libreria_buhobooks/" target="_blank" rel="noreferrer">
+          <div class="social-icon">
+            <img src="BuhoBooks/instagram-icon.svg" alt="Instagram">
+          </div>
+          <div class="social-meta">
+            <div class="social-title">Instagram</div>
+            <div class="social-subtitle">@libreria_buhobooks</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="social-link facebook" href="https://www.facebook.com/share/1RxWvGSDhU/" target="_blank" rel="noreferrer">
+          <div class="social-icon">
+            <img src="BuhoBooks/facebook-icon.svg" alt="Facebook">
+          </div>
+          <div class="social-meta">
+            <div class="social-title">Facebook</div>
+            <div class="social-subtitle">Librería BuhoBooks</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+
+        <a class="social-link tiktok" href="https://www.tiktok.com/@libreria_buhobooks?lang=es-419" target="_blank" rel="noreferrer">
+          <div class="social-icon">
+            <img src="BuhoBooks/tiktok-icon-light (1).svg" alt="TikTok">
+          </div>
+          <div class="social-meta">
+            <div class="social-title">TikTok</div>
+            <div class="social-subtitle">@libreria_buhobooks</div>
+          </div>
+          <span class="arrow">→</span>
+        </a>
+      </div>
+
+      <button class="share-btn" onclick="compartirPerfil()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
+        </svg>
+        Compartir perfil
+      </button>
+    </section>
+
+    <section class="card links-box" style="padding-top: 16px; padding-bottom: 14px;">
+      <div class="footer-tools">
+        <a href="https://wa.me/573000449696" class="mini-link" target="_blank" rel="noreferrer" title="WhatsApp">
           <img src="BuhoBooks/whatsapp-icon.svg" alt="WhatsApp">
-        </div>
-        <div class="link-text">
-          <div class="link-title">WhatsApp</div>
-          <div class="link-subtitle">Haz tu pedido por mensaje</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <!-- Instagram -->
-      <a href="https://www.instagram.com/libreria_buhobooks/" class="link-card instagram" target="_blank">
-        <div class="link-icon">
+        </a>
+        <a href="https://www.instagram.com/libreria_buhobooks/" class="mini-link" target="_blank" rel="noreferrer" title="Instagram">
           <img src="BuhoBooks/instagram-icon.svg" alt="Instagram">
-        </div>
-        <div class="link-text">
-          <div class="link-title">Instagram</div>
-          <div class="link-subtitle">@libreria_buhobooks</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <!-- Facebook -->
-      <a href="https://www.facebook.com/share/1RxWvGSDhU/" class="link-card facebook" target="_blank">
-        <div class="link-icon">
+        </a>
+        <a href="https://www.facebook.com/share/1RxWvGSDhU/" class="mini-link" target="_blank" rel="noreferrer" title="Facebook">
           <img src="BuhoBooks/facebook-icon.svg" alt="Facebook">
-        </div>
-        <div class="link-text">
-          <div class="link-title">Facebook</div>
-          <div class="link-subtitle">Librería BuhoBooks</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-
-      <!-- TikTok -->
-      <a href="https://www.tiktok.com/@libreria_buhobooks?lang=es-419" class="link-card tiktok" target="_blank">
-        <div class="link-icon">
+        </a>
+        <a href="https://www.tiktok.com/@libreria_buhobooks?lang=es-419" class="mini-link" target="_blank" rel="noreferrer" title="TikTok">
           <img src="BuhoBooks/tiktok-icon-light (1).svg" alt="TikTok">
-        </div>
-        <div class="link-text">
-          <div class="link-title">TikTok</div>
-          <div class="link-subtitle">@libreria_buhobooks</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
+        </a>
+      </div>
 
-      <!-- Catálogo -->
-      <a href="https://wa.me/c/573000449696" class="link-card catalogo" target="_blank">
-        <div class="link-icon">
-          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:26px;">
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#E8491D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="#E8491D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M9 7h6M9 11h4" stroke="#E8491D" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="link-text">
-          <div class="link-title">📚 Catálogo</div>
-          <div class="link-subtitle">Explora nuestros libros disponibles</div>
-        </div>
-        <span class="link-arrow">→</span>
-      </a>
-    </div>
-
-    <!-- Botón Compartir -->
-    <button class="share-btn" onclick="compartirPerfil()">
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path d="M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
-      </svg>
-      Compartir este perfil
-    </button>
-
-    <!-- Iconos de redes sociales (solo iconos) -->
-    <div class="social-icons">
-      <a href="https://wa.me/573000449696" class="social-icon-link" target="_blank" title="WhatsApp">
-        <img src="BuhoBooks/whatsapp-icon.svg" alt="WhatsApp">
-      </a>
-      <a href="https://www.instagram.com/libreria_buhobooks/" class="social-icon-link" target="_blank" title="Instagram">
-        <img src="BuhoBooks/instagram-icon.svg" alt="Instagram">
-      </a>
-      <a href="https://www.facebook.com/share/1RxWvGSDhU/" class="social-icon-link" target="_blank" title="Facebook">
-        <img src="BuhoBooks/facebook-icon.svg" alt="Facebook">
-      </a>
-      <a href="https://www.tiktok.com/@libreria_buhobooks?lang=es-419" class="social-icon-link" target="_blank" title="TikTok">
-        <img src="BuhoBooks/tiktok-icon-light (1).svg" alt="TikTok">
-      </a>
-    </div>
-
-    <!-- Footer -->
-    <p class="footer">Hecho con 🦉 por <span>BuhoBooks</span></p>
-
+      <p class="footer">Hecho con 🦉 por <span>BuhoBooks</span></p>
+    </section>
   </div>
 
-  <!-- Toast de notificación -->
   <div class="toast" id="toast">✅ ¡Enlace copiado!</div>
 
   <script>
     function compartirPerfil() {
       const url = window.location.href;
-      const texto = '🦉📚 ¡Mira la librería BuhoBooks! Encuentra tu próximo libro favorito: ';
-
-      // Si el navegador soporta Web Share API
       if (navigator.share) {
         navigator.share({
           title: 'BuhoBooks - Tu librería de confianza',
-          text: texto,
+          text: '🦉📚 Mira la librería BuhoBooks y encuentra tu próximo libro favorito.',
           url: url
-        }).catch(() => {
-          copiarAlPortapapeles(url);
-        });
+        }).catch(() => copiarAlPortapapeles(url));
       } else {
         copiarAlPortapapeles(url);
       }
     }
 
     function copiarAlPortapapeles(url) {
-      navigator.clipboard.writeText(url).then(() => {
-        mostrarToast();
-      }).catch(() => {
-        // Fallback para navegadores antiguos
+      navigator.clipboard.writeText(url).then(() => mostrarToast()).catch(() => {
         const input = document.createElement('input');
         input.value = url;
         document.body.appendChild(input);
@@ -629,9 +568,7 @@
     function mostrarToast() {
       const toast = document.getElementById('toast');
       toast.classList.add('show');
-      setTimeout(() => {
-        toast.classList.remove('show');
-      }, 2500);
+      setTimeout(() => toast.classList.remove('show'), 2500);
     }
   </script>
 </body>
