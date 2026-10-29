@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BuhoBooks | Bio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ── Reset & Base ── */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg-cream: #FDF5E6;
+      --bg-card: #FFFFFF;
+      --bg-card-hover: #FFF8EE;
+      --orange: #E8491D;
+      --orange-light: rgba(232, 73, 29, 0.1);
+      --orange-glow: rgba(232, 73, 29, 0.2);
+      --text-dark: #2D2014;
+      --text-secondary: #7A6B5D;
+      --border: rgba(232, 73, 29, 0.2);
+      --radius: 16px;
+
+      /* Colores de cada red social */
+      --whatsapp: #25D366;
+      --instagram: #E4405F;
+      --facebook: #1877F2;
+      --tiktok: #000000;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--bg-cream);
+      background-image: url('IMPLEMENTOS/Fondo.svg');
+      background-size: 400px;
+      background-repeat: repeat;
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px 60px;
+      overflow-x: hidden;
+    }
+
+    /* ── Overlay para legibilidad ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: rgba(253, 245, 230, 0.75);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Contenedor principal ── */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 420px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+
+    /* ── Avatar ── */
+    .avatar-wrapper {
+      position: relative;
+      width: 130px;
+      height: 130px;
+    }
+
+    .avatar-ring {
+      position: absolute;
+      inset: -5px;
+      border-radius: 50%;
+      border: 4px solid var(--orange);
+      animation: pulse-ring 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-ring {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.05); opacity: 0.7; }
+    }
+
+    .avatar {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 4px solid var(--bg-cream);
+      box-shadow: 0 4px 20px var(--orange-glow);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ── Texto del perfil ── */
+    .profile-info {
+      text-align: center;
+      width: 100%;
+    }
+
+    .profile-name {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--orange);
+      letter-spacing: 0.5px;
+    }
+
+    .profile-handle {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .profile-bio {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-top: 10px;
+      max-width: 340px;
+      font-weight: 500;
+      margin-inline: auto;
+    }
+
+    /* ── Estadísticas ── */
+    .stats {
+      display: flex;
+      gap: 14px;
+      width: 100%;
+    }
+
+    .stat-card {
+      flex: 1;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 12px;
+      text-align: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(232, 73, 29, 0.12);
+    }
+
+    .stat-number {
+      font-family: 'Fredoka', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--orange);
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 4px;
+      font-weight: 600;
+    }
+
+    .stat-icon {
+      font-size: 1.3rem;
+      margin-bottom: 4px;
+    }
+
+    /* ── Marquesina "Síguenos" ── */
+    .marquee-wrapper {
+      width: 100%;
+      overflow: hidden;
+      background: var(--orange);
+      border-radius: 30px;
+      padding: 10px 0;
+    }
+
+    .marquee-content {
+      display: flex;
+      animation: marquee-scroll 12s linear infinite;
+      white-space: nowrap;
+      width: max-content;
+      will-change: transform;
+    }
+
+    .marquee-content span {
+      flex: 0 0 auto;
+      font-family: 'Fredoka', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #FFFFFF;
+      letter-spacing: 1px;
+      padding: 0 20px;
+      text-transform: uppercase;
+    }
+
+    @keyframes marquee-scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── Enlaces de redes sociales ── */
+    .links {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .link-card {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .link-card:hover {
+      background: var(--bg-card-hover);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Colores individuales en hover */
+    .link-card.whatsapp:hover { border-color: var(--whatsapp); box-shadow: 0 8px 25px rgba(37, 211, 102, 0.2); }
+    .link-card.instagram:hover { border-color: var(--instagram); box-shadow: 0 8px 25px rgba(228, 64, 95, 0.2); }
+    .link-card.facebook:hover { border-color: var(--facebook); box-shadow: 0 8px 25px rgba(24, 119, 242, 0.2); }
+    .link-card.tiktok:hover { border-color: var(--tiktok); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); }
+    .link-card.catalogo:hover { border-color: var(--orange); box-shadow: 0 8px 25px rgba(232, 73, 29, 0.2); }
+
+    .link-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+
+    .link-card.whatsapp .link-icon { background: rgba(37, 211, 102, 0.12); }
+    .link-card.instagram .link-icon { background: rgba(228, 64, 95, 0.12); }
+    .link-card.facebook .link-icon { background: rgba(24, 119, 242, 0.12); }
+    .link-card.tiktok .link-icon { background: rgba(0, 0, 0, 0.08); }
+    .link-card.catalogo .link-icon { background: var(--orange-light); }
+
+    .link-icon img {
+      width: 28px;
+      height: 28px;
+      object-fit: contain;
+    }
+
+    .link-text {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-title {
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .link-subtitle {
+      font-size: 0.78rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+      overflow-wrap: anywhere;
+    }
+
+    .link-arrow {
+      color: var(--text-secondary);
+      font-weight: 600;
+      font-size: 1.1rem;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .link-card.whatsapp:hover .link-arrow { color: var(--whatsapp); transform: translateX(4px); }
+    .link-card.instagram:hover .link-arrow { color: var(--instagram); transform: translateX(4px); }
+    .link-card.facebook:hover .link-arrow { color: var(--facebook); transform: translateX(4px); }
+    .link-card.tiktok:hover .link-arrow { color: var(--tiktok); transform: translateX(4px); }
+    .link-card.catalogo:hover .link-arrow { color: var(--orange); transform: translateX(4px); }
+
+    /* ── Botón Compartir ── */
+    .share-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 16px 20px;
+      background: var(--orange);
+      border: none;
+      border-radius: 30px;
+      color: #FFFFFF;
+      font-family: 'Nunito', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(232, 73, 29, 0.3);
+      letter-spacing: 0.5px;
+    }
+
+    .share-btn:hover {
+      background: #d13d12;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(232, 73, 29, 0.4);
+    }
+
+    .share-btn:active {
+      transform: translateY(0);
+    }
+
+    .share-btn svg {
+      width: 20px;
+      height: 20px;
+      fill: #FFFFFF;
+    }
+
+    /* ── Iconos de redes en footer ── */
+    .social-icons {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      justify-content: center;
+      margin-top: 4px;
+    }
+
+    .social-icon-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      border: 2px solid var(--border);
+      transition: all 0.3s ease;
+      overflow: hidden;
+    }
+
+    .social-icon-link:hover {
+      transform: translateY(-3px) scale(1.08);
+      box-shadow: 0 6px 18px rgba(232, 73, 29, 0.2);
+      border-color: var(--orange);
+    }
+
+    .social-icon-link img {
+      width: 22px;
+      height: 22px;
+      object-fit: contain;
+    }
+
+    /* ── Footer ── */
+    .footer {
+      margin-top: 4px;
+      font-size: 0.8rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+
+    .footer span {
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    /* ── Animación de entrada ── */
+    .container > * {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.6s ease forwards;
+    }
+
+    .container > *:nth-child(1) { animation-delay: 0.1s; }
+    .container > *:nth-child(2) { animation-delay: 0.2s; }
+    .container > *:nth-child(3) { animation-delay: 0.3s; }
+    .container > *:nth-child(4) { animation-delay: 0.4s; }
+    .container > *:nth-child(5) { animation-delay: 0.5s; }
+    .container > *:nth-child(6) { animation-delay: 0.6s; }
+    .container > *:nth-child(7) { animation-delay: 0.7s; }
+    .container > *:nth-child(8) { animation-delay: 0.8s; }
+    .container > *:nth-child(9) { animation-delay: 0.9s; }
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      body { padding: 24px 16px 40px; }
+      .profile-name { font-size: 1.7rem; }
+      .avatar-wrapper { width: 110px; height: 110px; }
+      .avatar { width: 110px; height: 110px; }
+      .stat-number { font-size: 1.4rem; }
+    }
+
+    @media (max-width: 360px) {
+      body { padding: 20px 12px 32px; }
+      .container { gap: 16px; }
+      .stats { gap: 8px; }
+      .stat-card { padding: 12px 8px; }
+      .stat-label { font-size: 0.72rem; }
+      .link-card { gap: 10px; padding: 14px 12px; }
+    }
+
+    /* ── Toast de copiado ── */
+    .toast {
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%) translateY(80px);
+      background: var(--text-dark);
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-family: 'Nunito', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+      z-index: 1000;
+      opacity: 0;
+      transition: all 0.4s ease;
+      pointer-events: none;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <!-- Avatar con foto de perfil (SVG) -->
+    <div class="avatar-wrapper">
+      <div class="avatar-ring"></div>
+      <div class="avatar">
+        <img src="IMPLEMENTOS/Perfil.svg" alt="BuhoBooks - Logo">
+      </div>
+    </div>
+
+    <!-- Info del perfil -->
+    <div class="profile-info">
+      <h1 class="profile-name">BuhoBooks</h1>
+      <p class="profile-handle">@libreria_buhobooks</p>
+      <p class="profile-bio">
+        📚 Tu librería de confianza · 🇨🇴 Envíos a todo Colombia 🦉✨
+      </p>
+    </div>
+
+    <!-- Estadísticas -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-icon">📦</div>
+        <div class="stat-number">145+</div>
+        <div class="stat-label">Ventas confirmadas</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">⭐</div>
+        <div class="stat-number">98%</div>
+        <div class="stat-label">Buena vibra</div>
+      </div>
+    </div>
+
+    <!-- Marquesina "Síguenos" -->
+    <div class="marquee-wrapper">
+      <div class="marquee-content">
+        <span>🦉 ¡Síguenos! · 📚 Nuevos libros cada semana · 🇨🇴 Envíos a todo Colombia · 📖 Tu próxima lectura te espera ·</span>
+        <span>🦉 ¡Síguenos! · 📚 Nuevos libros cada semana · 🇨🇴 Envíos a todo Colombia · 📖 Tu próxima lectura te espera ·</span>
+      </div>
+    </div>
+
+    <!-- Links de redes sociales -->
+    <div class="links">
+      <!-- WhatsApp -->
+      <a href="https://wa.me/573000449696" class="link-card whatsapp" target="_blank">
+        <div class="link-icon">
+          <img src="IMPLEMENTOS/whatsapp-icon.svg" alt="WhatsApp">
+        </div>
+        <div class="link-text">
+          <div class="link-title">WhatsApp</div>
+          <div class="link-subtitle">Haz tu pedido por mensaje</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://www.instagram.com/libreria_buhobooks/" class="link-card instagram" target="_blank">
+        <div class="link-icon">
+          <img src="IMPLEMENTOS/instagram-icon.svg" alt="Instagram">
+        </div>
+        <div class="link-text">
+          <div class="link-title">Instagram</div>
+          <div class="link-subtitle">@libreria_buhobooks</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://www.facebook.com/share/1RxWvGSDhU/" class="link-card facebook" target="_blank">
+        <div class="link-icon">
+          <img src="IMPLEMENTOS/facebook-icon.svg" alt="Facebook">
+        </div>
+        <div class="link-text">
+          <div class="link-title">Facebook</div>
+          <div class="link-subtitle">Librería BuhoBooks</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@libreria_buhobooks?lang=es-419" class="link-card tiktok" target="_blank">
+        <div class="link-icon">
+          <img src="IMPLEMENTOS/tiktok-icon-light (1).svg" alt="TikTok">
+        </div>
+        <div class="link-text">
+          <div class="link-title">TikTok</div>
+          <div class="link-subtitle">@libreria_buhobooks</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <!-- Catálogo -->
+      <a href="https://wa.me/c/573000449696" class="link-card catalogo" target="_blank">
+        <div class="link-icon">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:26px;height:26px;">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" stroke="#E8491D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" stroke="#E8491D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 7h6M9 11h4" stroke="#E8491D" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="link-text">
+          <div class="link-title">📚 Catálogo</div>
+          <div class="link-subtitle">Explora nuestros libros disponibles</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+    </div>
+
+    <!-- Botón Compartir -->
+    <button class="share-btn" onclick="compartirPerfil()">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M18 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM6 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM18 22a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM8.59 13.51l6.83 3.98M15.41 6.51l-6.82 3.98"/>
+      </svg>
+      Compartir este perfil
+    </button>
+
+    <!-- Iconos de redes sociales (solo iconos) -->
+    <div class="social-icons">
+      <a href="https://wa.me/573000449696" class="social-icon-link" target="_blank" title="WhatsApp">
+        <img src="IMPLEMENTOS/whatsapp-icon.svg" alt="WhatsApp">
+      </a>
+      <a href="https://www.instagram.com/libreria_buhobooks/" class="social-icon-link" target="_blank" title="Instagram">
+        <img src="IMPLEMENTOS/instagram-icon.svg" alt="Instagram">
+      </a>
+      <a href="https://www.facebook.com/share/1RxWvGSDhU/" class="social-icon-link" target="_blank" title="Facebook">
+        <img src="IMPLEMENTOS/facebook-icon.svg" alt="Facebook">
+      </a>
+      <a href="https://www.tiktok.com/@libreria_buhobooks?lang=es-419" class="social-icon-link" target="_blank" title="TikTok">
+        <img src="IMPLEMENTOS/tiktok-icon-light (1).svg" alt="TikTok">
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <p class="footer">Hecho con 🦉 por <span>BuhoBooks</span></p>
+
+  </div>
+
+  <!-- Toast de notificación -->
+  <div class="toast" id="toast">✅ ¡Enlace copiado!</div>
+
+  <script>
+    function compartirPerfil() {
+      const url = window.location.href;
+      const texto = '🦉📚 ¡Mira la librería BuhoBooks! Encuentra tu próximo libro favorito: ';
+
+      // Si el navegador soporta Web Share API
+      if (navigator.share) {
+        navigator.share({
+          title: 'BuhoBooks - Tu librería de confianza',
+          text: texto,
+          url: url
+        }).catch(() => {
+          copiarAlPortapapeles(url);
+        });
+      } else {
+        copiarAlPortapapeles(url);
+      }
+    }
+
+    function copiarAlPortapapeles(url) {
+      navigator.clipboard.writeText(url).then(() => {
+        mostrarToast();
+      }).catch(() => {
+        // Fallback para navegadores antiguos
+        const input = document.createElement('input');
+        input.value = url;
+        document.body.appendChild(input);
+        input.select();
+        document.execCommand('copy');
+        document.body.removeChild(input);
+        mostrarToast();
+      });
+    }
+
+    function mostrarToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.add('show');
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
